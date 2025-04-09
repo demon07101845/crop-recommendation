@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function CropDiseaseDetection() {
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null); // State to store image preview
+  const [preview, setPreview] = useState(null);
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +32,7 @@ function CropDiseaseDetection() {
 
     try {
       const response = await axios.post(
-        'http://3.108.236.27:8000/predict', //------------//change the api backend for new post request //
+        'http://ec2-13-126-80-135.ap-south-1.compute.amazonaws.com:8000/predict',
         formData,
         {
           headers: {
@@ -63,44 +63,102 @@ function CropDiseaseDetection() {
       }}
     >
       <h2>Crop Disease Detection</h2>
-      <form onSubmit={handleSubmit}>
+
+      {/* File Input Controls */}
+      <div style={{ marginBottom: '10px' }}>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
           style={{ marginBottom: '10px' }}
         />
+      </div>
+
+      {/* Detect Button - Always visible and accessible */}
+      <div style={{ marginBottom: '20px', position: 'relative', zIndex: 10 }}>
         <button
-          type="submit"
-          style={{ padding: '5px 15px', marginTop: '10px' }}
+          onClick={handleSubmit}
+          style={{
+            padding: '8px 20px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            fontWeight: 'bold',
+          }}
         >
           Detect Disease
         </button>
-      </form>
+      </div>
 
+      {/* Loading Indicator */}
+      {loading && (
+        <div
+          style={{
+            margin: '10px 0',
+            padding: '8px',
+            backgroundColor: '#e8f5e9',
+            borderRadius: '5px',
+          }}
+        >
+          <p style={{ fontWeight: 'bold', margin: '0' }}>Analyzing image...</p>
+        </div>
+      )}
+
+      {/* Image Preview - Smaller and constrained */}
       {preview && (
-        <div style={{ marginTop: '20px' }}>
-          <h4>Uploaded Image:</h4>
+        <div
+          style={{
+            marginTop: '10px',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            padding: '10px',
+            backgroundColor: '#f9f9f9',
+            maxHeight: '250px',
+            overflow: 'auto',
+          }}
+        >
+          <h4 style={{ marginTop: '0', marginBottom: '8px' }}>
+            Uploaded Image:
+          </h4>
           <img
             src={preview}
             alt="Uploaded preview"
             style={{
               maxWidth: '100%',
-              maxHeight: '300px',
-              border: '1px solid #ccc',
-              borderRadius: '10px',
-              marginBottom: '10px',
+              maxHeight: '180px',
+              borderRadius: '5px',
             }}
           />
         </div>
       )}
 
-      {loading && <p>Loading...</p>}
-
+      {/* Results Section */}
       {result && (
-        <div>
-          <h4>Prediction Result:</h4>
-          <p style={{ fontSize: '18px', fontWeight: 'bold' }}>{result}</p>
+        <div
+          style={{
+            marginTop: '15px',
+            border: '1px solid #4CAF50',
+            borderRadius: '8px',
+            padding: '10px',
+            backgroundColor: '#f0f7f0',
+          }}
+        >
+          <h4 style={{ marginTop: '0', marginBottom: '8px' }}>
+            Prediction Result:
+          </h4>
+          <p
+            style={{
+              fontSize: '16px',
+              color: 'black',
+              fontWeight: 'bold',
+              margin: '0',
+            }}
+          >
+            {result}
+          </p>
         </div>
       )}
     </div>
