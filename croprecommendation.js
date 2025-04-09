@@ -14,7 +14,7 @@ function CropRecommendation() {
 
     try {
       const response = await axios.get(
-        `http://crop-env-1.eba-mpisjzyb.ap-south-1.elasticbeanstalk.com/predict`,
+        `http://aws-crop-yield-env.eba-iwt38pnf.ap-south-1.elasticbeanstalk.com/predict`,
         {
           params: {
             N: cropData.nitrogen || 0,
