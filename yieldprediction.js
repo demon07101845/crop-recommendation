@@ -15,7 +15,7 @@ function YieldPrediction() {
     try {
       const params = new URLSearchParams(cropData).toString();
       const response = await axios.get(
-        `http://aws-crop-yield-env.eba-iwt38pnf.ap-south-1.elasticbeanstalk.com/predict2?${params}`
+        ` http://epics-yield-recommendation-crop-env.eba-jmgqtjtu.ap-south-1.elasticbeanstalk.com/predict2?${params}`
       );
 
       if (response.data.success) {
