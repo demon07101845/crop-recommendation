@@ -56,7 +56,6 @@ const Navbar = () => {
     }
   };
 
-  // Handle smooth scrolling to sections
   const scrollToSection = (sectionId) => {
     // If we're not on the homepage, navigate there first
     if (location.pathname !== '/') {
@@ -108,7 +107,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Simplified Contact Us link - works on any page */}
         <a
           href="#contact"
           className="nav-item"
@@ -121,6 +119,101 @@ const Navbar = () => {
         </a>
       </div>
     </nav>
+  );
+};
+
+// New Footer Component
+const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId) => {
+    // If we're not on the homepage, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Set a flag in sessionStorage to indicate where to scroll after navigation
+      sessionStorage.setItem('scrollTo', sectionId);
+    } else {
+      // We're already on the homepage, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-logo">
+          <h2>HARVEST HUB</h2>
+          <p>AI-Driven Agricultural Insights</p>
+        </div>
+
+        <div className="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => scrollToSection('about')}
+              >
+                About Us
+              </button>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => scrollToSection('contact')}
+              >
+                Contact
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-models">
+          <h3>Our Models</h3>
+          <ul>
+            <li>
+              <Link to="/crop-recommendation">Crop Prediction</Link>
+            </li>
+            <li>
+              <Link to="/yield-prediction">Yield Prediction</Link>
+            </li>
+            <li>
+              <Link to="/disease-detection">Disease Prediction</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-contact">
+          <h3>Contact Info</h3>
+          <p>Email: info@harvesthub.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <div className="social-icons">
+            <button className="social-icon-button">
+              <i className="fa fa-facebook"></i>
+            </button>
+            <button className="social-icon-button">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </button>
+            <button className="social-icon-button">
+              <i className="fa fa-instagram"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>
+          &copy; {new Date().getFullYear()} Harvest Hub. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
   );
 };
 
@@ -166,6 +259,7 @@ const AppContent = () => {
         <Route path="/yield-prediction" element={<YieldPrediction />} />
         <Route path="/disease-detection" element={<DiseaseDetection />} />
       </Routes>
+      <Footer />
     </div>
   );
 };
@@ -189,6 +283,54 @@ const HomePage = () => {
     },
   ];
 
+  // Add scroll animation detection
+  useEffect(() => {
+    // Function to check if element is in viewport
+    const checkScroll = () => {
+      // For model cards
+      const modelCards = document.querySelectorAll('.boxski');
+      modelCards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        // If card is in viewport
+        if (rect.top < window.innerHeight - 100) {
+          // Add animation with delay based on index
+          setTimeout(() => {
+            card.classList.add('appear');
+          }, index * 200); // 200ms delay between each card
+        }
+      });
+
+      // For About section
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        const aboutRect = aboutSection.getBoundingClientRect();
+        if (aboutRect.top < window.innerHeight - 100) {
+          aboutSection.classList.add('appear');
+        }
+      }
+
+      // For Contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const contactRect = contactSection.getBoundingClientRect();
+        if (contactRect.top < window.innerHeight - 100) {
+          contactSection.classList.add('appear');
+        }
+      }
+    };
+
+    // Initial check
+    setTimeout(checkScroll, 100);
+
+    // Add scroll event listener
+    window.addEventListener('scroll', checkScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, []);
+
   return (
     <>
       <div className="container" id="banner-section">
@@ -207,7 +349,7 @@ const HomePage = () => {
         ))}
       </div>
 
-      <section id="about">
+      <section id="about" className="scroll-element">
         <h1>ABOUT US</h1>
         <p>
           Harvest Hub: AI-Driven Agricultural Insights is a web-based platform
@@ -223,7 +365,7 @@ const HomePage = () => {
 };
 
 const ModelCard = ({ model }) => (
-  <div className="boxski">
+  <div className="boxski scroll-element">
     <div className="card">
       <img className="img" src={model.image} alt={model.title} />
       <div className="textBox">
@@ -248,7 +390,7 @@ const ModelCard = ({ model }) => (
 );
 
 const ContactSection = () => (
-  <section id="contact">
+  <section id="contact" className="scroll-element">
     <h1 className="section-header">Contact</h1>
     <div className="contact-wrapper">
       <form className="form-horizontal">
@@ -287,5 +429,4 @@ const ContactSection = () => (
     </div>
   </section>
 );
-
 export default App;
