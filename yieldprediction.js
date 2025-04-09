@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function YieldPrediction() {
-  const [cropData, setCropData] = useState({});
+  const [cropData, setCropData] = useState({ Crop_Year: '2024' });
   const [yieldPrediction, setYieldPrediction] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -15,7 +15,7 @@ function YieldPrediction() {
     try {
       const params = new URLSearchParams(cropData).toString();
       const response = await axios.get(
-        `http://crop-env-1.eba-mpisjzyb.ap-south-1.elasticbeanstalk.com/predict2?${params}`
+        `http://aws-crop-yield-env.eba-iwt38pnf.ap-south-1.elasticbeanstalk.com/predict2?${params}`
       );
 
       if (response.data.success) {
