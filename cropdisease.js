@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function CropDiseaseDetection() {
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(null); // State to store image preview
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -11,6 +11,7 @@ function CropDiseaseDetection() {
     const file = event.target.files[0];
     setImage(file);
 
+    // Create an image preview URL
     if (file) {
       setPreview(URL.createObjectURL(file));
     } else {
@@ -31,7 +32,7 @@ function CropDiseaseDetection() {
 
     try {
       const response = await axios.post(
-        'http://3.108.236.27:8000/predict',
+        'http://3.108.236.27:8000/predict', //------------//change the api backend for new post request //
         formData,
         {
           headers: {
@@ -40,6 +41,7 @@ function CropDiseaseDetection() {
         }
       );
 
+      // Process the prediction result to replace underscores with spaces
       const formattedResult = response.data.prediction.replace(/_/g, ' ');
       setResult(formattedResult);
     } catch (error) {
@@ -61,74 +63,44 @@ function CropDiseaseDetection() {
       }}
     >
       <h2>Crop Disease Detection</h2>
-
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          style={{
-            marginBottom: '85px',
-            display: 'block',
-            padding: '10px',
-          }}
+          style={{ marginBottom: '10px' }}
         />
-
-        {preview && (
-          <div style={{ marginTop: '20px', width: '100%' }}>
-            <h4>Uploaded Image:</h4>
-            <img
-              src={preview}
-              alt="Uploaded preview"
-              style={{
-                maxWidth: '100%',
-                maxHeight: '300px',
-                objectFit: 'contain',
-                display: 'block',
-                margin: 'auto',
-                border: '1px solid #ccc',
-                borderRadius: '10px',
-                marginBottom: '20px', // Added spacing to fix overlapping
-              }}
-            />
-          </div>
-        )}
-
-        {image && (
-          <button
-            type="submit"
-            style={{
-              padding: '10px 15px',
-              marginTop: '10px',
-              backgroundColor: '#28a745',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '16px',
-              borderRadius: '5px',
-              width: '100%',
-            }}
-          >
-            Detect Disease
-          </button>
-        )}
+        <button
+          type="submit"
+          style={{ padding: '5px 15px', marginTop: '10px' }}
+        >
+          Detect Disease
+        </button>
       </form>
+
+      {preview && (
+        <div style={{ marginTop: '20px' }}>
+          <h4>Uploaded Image:</h4>
+          <img
+            src={preview}
+            alt="Uploaded preview"
+            style={{
+              maxWidth: '100%',
+              maxHeight: '300px',
+              border: '1px solid #ccc',
+              borderRadius: '10px',
+              marginBottom: '10px',
+            }}
+          />
+        </div>
+      )}
 
       {loading && <p>Loading...</p>}
 
       {result && (
-        <div style={{ marginTop: '20px' }}>
+        <div>
           <h4>Prediction Result:</h4>
-          <p style={{ fontSize: '18px', fontWeight: 'bold', color: 'white' }}>
-            {result}
-          </p>
+          <p style={{ fontSize: '18px', fontWeight: 'bold' }}>{result}</p>
         </div>
       )}
     </div>
