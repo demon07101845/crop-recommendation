@@ -74,9 +74,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <a href="#" className="nav-logo" onClick={scrollToBanner}>
+        <button className="nav-logo" onClick={scrollToBanner}>
           HARVEST HUB
-        </a>
+        </button>
       </div>
       <div className="nav-toggle" onClick={toggleMenu}>
         <span></span>
@@ -84,9 +84,9 @@ const Navbar = () => {
         <span></span>
       </div>
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <a href="#" className="nav-item" onClick={scrollToBanner}>
+        <button className="nav-item" onClick={scrollToBanner}>
           Home
-        </a>
+        </button>
         <div className="nav-dropdown" ref={dropdownRef}>
           <button className="nav-item dropdown-toggle" onClick={toggleDropdown}>
             Models <span className="dropdown-icon">▼</span>
