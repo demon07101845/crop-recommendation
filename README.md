@@ -1,4 +1,4 @@
- live deploy : https://harvest-hub-six.vercel.app/
+ live deploy : [https://harvest-hub-six.vercel.app/](https://harvest-hub-v2-p4v7x3xlb-yagyeshvishnois-projects.vercel.app/)
 
 
 
