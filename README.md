@@ -117,6 +117,6 @@ This project was developed as part of an academic initiative to explore how AI c
 We welcome feedback, suggestions, and collaborations! Feel free to open issues or contribute through pull requests.
 
 ---
-//live deploy : [https://harvest-hub-six.vercel.app/](https://harvest-hub-v2-p4v7x3xlb-yagyeshvishnois-projects.vercel.app/)
+--//live deploy : [https://harvest-hub-six.vercel.app/](https://harvest-hub-v2-p4v7x3xlb-yagyeshvishnois-projects.vercel.app/)
 
 
