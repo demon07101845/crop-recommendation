@@ -4,73 +4,59 @@
 
 
 
-# Getting Started with Create React App
+🌾 Harvest Hub – AI-Driven Agricultural Insights
+Harvest Hub is a full-stack AI-powered web platform designed to help farmers make informed, data-driven agricultural decisions. By combining machine learning and computer vision techniques, the platform delivers real-time insights for:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+✅ Crop Recommendation
+📈 Crop Yield Prediction
+🍂 Plant Disease Detection Live demo link : https://frontend-ankits-projects-4916b64e.vercel.app/
+🚀 Key Features
+🌱 Crop Recommendation
+Recommends the most suitable crop based on environmental and soil parameters such as NPK levels, pH, temperature, humidity, and rainfall. → Model: Random Forest Classifier → Accuracy: ~96%
 
-## Available Scripts
+📊 Yield Prediction
+Estimates the expected yield for a selected crop using historical and environmental data. → Model: Decision Tree Regression → Accuracy: ~85%
 
-In the project directory, you can run:
+🩺 Plant Disease Detection
+Detects plant diseases from leaf images using a Transformer-based deep learning model. → Model: Vision Transformer (ViT) → Training Data: 87,000+ images → Accuracy: ~92%
 
-### `npm start`
+🧰 Tech Stack
+Layer	Tools / Frameworks
+Frontend	React.js
+Backend	Flask (Python)
+ML Models	Random Forest, Decision Tree, ViT
+Computer Vision	OpenCV
+Deployment	AWS Elastic Beanstalk, EC2, S3
+☁️ Cloud Infrastructure
+AWS Elastic Beanstalk: Hosting Flask APIs for crop recommendation and yield prediction
+AWS EC2: Hosting the plant disease detection model for real-time inference
+AWS S3: Storage for trained models and static assets
+📁 Project Structure
+harvest-hub/
+├── frontend/          # React-based user interface
+├── backend/           # Flask APIs and integrated ML models
+├── disease-model/     # Vision Transformer model for disease detection
+├── datasets/          # Training and testing data
+├── utils/             # Helper scripts and preprocessing
+└── README.md
+💡 Motivation
+With agriculture being the backbone of many economies, Harvest Hub aims to harness the power of artificial intelligence and cloud computing to assist farmers in making smarter choices. Our goal is to build tools that are:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Accurate
+Scalable
+Easy to use
+Impactful in real-world agricultural scenarios
+This project was developed as part of an academic initiative to explore how AI can address practical challenges in farming and food production.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+📸 Demo / Screenshots
+🏠 Home Page (Initial View)
+Home Page	🏠 Home Page (Alternate View)
+Home Page 2
+🌱 Crop Recommendation Result
+Crop Recommendation	📈 Crop Yield Prediction
+Crop Yield
+🍂 Plant Disease Detection
+Disease Detection
+🤝 Contributions & Feedback
+We welcome feedback, suggestions, and collaborations! Feel free to open issues or contribute through pull requests.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
