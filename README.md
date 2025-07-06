@@ -1,4 +1,4 @@
- live deploy : [https://harvest-hub-six.vercel.app/](https://harvest-hub-v2-p4v7x3xlb-yagyeshvishnois-projects.vercel.app/)
+ 
 
 
 
@@ -58,5 +58,6 @@ Crop Yield
 🍂 Plant Disease Detection
 Disease Detection
 🤝 Contributions & Feedback
+live deploy : [https://harvest-hub-six.vercel.app/](https://harvest-hub-v2-p4v7x3xlb-yagyeshvishnois-projects.vercel.app/)
 We welcome feedback, suggestions, and collaborations! Feel free to open issues or contribute through pull requests.
 
