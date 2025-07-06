@@ -95,6 +95,7 @@ This project was developed as part of an academic initiative to explore how AI c
   <tr>
     <td align="center">
       <strong>🌱 Crop Recommendation Result</strong><br/>
+    </td>
      
 
     </td>
